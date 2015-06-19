@@ -17,17 +17,18 @@ function addButton($key, $title){
         "</button><br>";
 }
 
-echo "<br>";
-$conn = new MySQLConnection($_POST["password"]);
-$titles = $conn->select();
-
-echo '<form action="editnote.php" method="post">';
-
-foreach($titles as $key => $title){
-    addButton($key, $title);
+function addAllNoteButtons($connection){
+    $titles = $connection->select();
+    echo '<form action="editnote.php" method="post">';
+    foreach($titles as $key => $title){
+        addButton($key, $title);
+    }
+    echo "</form>";
 }
 
-echo "</form>";
+echo "<br>";
+$conn = new MySQLConnection($_POST["password"]);
+addAllNoteButtons($conn);
 
 ?>
 
