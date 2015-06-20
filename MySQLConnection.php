@@ -66,9 +66,13 @@ class MySQLConnection{
     	return $elements;
     }
 
-    public function select(){
-        $selectCommand = "SELECT * FROM title";
-        $result = $this->connection->query($selectCommand);
+    public function getTitles(){
+        $command = "SELECT * FROM title";
+        return $this->returnQuery($command);
+    }
+    
+    public function returnQuery($command){
+        $result = $this->connection->query($command);
         if($result->num_rows > 0){
 
             while($row = $result->fetch_assoc()){

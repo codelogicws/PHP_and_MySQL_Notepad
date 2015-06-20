@@ -21,7 +21,7 @@ function addButton($key, $title){
 }
 
 function addAllNoteButtons($connection){
-    $titles = $connection->select();
+    $titles = $connection->getTitles();
     echo '<form action="editnote.php" method="post">';
     foreach($titles as $key => $title){
         addButton($key, $title);
