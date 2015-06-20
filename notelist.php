@@ -28,9 +28,16 @@ function addAllNoteButtons($connection){
     echo "</form>";
 }
 
-echo "<br>";
-$conn = MySQLConnection::makeWithPassword($_POST["password"]);
-$_SESSION["password"] = $_POST["password"];
+$conn;
+
+if (isset($_POST['password'])){
+	$conn = MySQLConnection::makeWithPassword($_POST["password"]);
+	$_SESSION["password"] = $_POST["password"];
+}else{
+	echo "got Here";
+	$conn = MySQLConnection::makeFromSession();	
+}
+
 addAllNoteButtons($conn);
 
 ?>

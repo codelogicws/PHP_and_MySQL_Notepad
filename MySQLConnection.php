@@ -48,6 +48,11 @@ class MySQLConnection{
     	return $stuff[$id];
     }
     
+    public function getTitle($id){
+    	$stuff = $this->selectArgument("title", $id);
+    	return $stuff[$id];
+    }
+    
     public function selectArgument($table, $id){
     	$selectCommand = "SELECT * FROM $table WHERE id='$id'";
     	$result = $this->connection->query($selectCommand);

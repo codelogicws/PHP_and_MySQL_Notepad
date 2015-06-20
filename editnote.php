@@ -8,16 +8,15 @@ include "MySQLConnection.php";
     $id = $_POST["note"];
     $connection = MySQLConnection::makeFromSession();
     $note = $connection->getNote($id);
+    $title = $connection->getTitle($id);
 
 ?>
 
 <form>
-<center>
-	<input type="text" size="60">
+	<input type="text" value=<?php echo '"' . $title . '"'?>>
 	<br>
-	<textarea name="note" cols="60" rows="10"><?php echo '"' . $note . '"'?></textarea>
-	<br>
-</center>
+	<textarea rows="10" cols="50"><?php echo $note?></textarea>
 </form>
+<a href="notelist.php">Back</a>
 
 </body></html>
