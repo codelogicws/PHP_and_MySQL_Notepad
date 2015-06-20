@@ -27,7 +27,6 @@ class MySQLConnection{
     
     public static function makeFromSession(){
     	$mySQLConnection = new MySQLConnection();
-    	echo "Pass from session " . $_SESSION["password"];
     	$mySQLConnection->connectToMyDatabase($_SESSION["password"]);
     	return $mySQLConnection;
     }
@@ -42,7 +41,24 @@ class MySQLConnection{
             die("Connection Failed: " . $conn->connect_error);
         }
         $this->connection = $conn;
-        echo"Connected successfully <br>";
+    }
+    
+    public function getNote($id){
+    	$stuff = $this->selectArgument("note", $id);
+    	return $stuff[$id];
+    }
+    
+    public function selectArgument($table, $id){
+    	$selectCommand = "SELECT * FROM $table WHERE id='$id'";
+    	$result = $this->connection->query($selectCommand);
+    	if($result->num_rows > 0){
+    		while($row = $result->fetch_assoc()){
+    			$elements[$row["id"]] = $row[$table];
+    		}
+    	}else{
+    		return "error";
+    	}
+    	return $elements;
     }
 
     public function select(){
