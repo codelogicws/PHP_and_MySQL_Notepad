@@ -3,6 +3,7 @@ include "MySQLConnection.php";
 if(!isset($_SESSION)){
 	session_start();
 }
+$passwordPostName = "password";
 ?>
 
 <html>
@@ -28,12 +29,11 @@ function addAllNoteButtons($connection){
     echo "</form>";
 }
 
-$conn;
-
-if (isset($_POST['password'])){
-	$conn = MySQLConnection::makeWithPassword($_POST["password"]);
-	$_SESSION["password"] = $_POST["password"];
-}else{
+$passwordPosted = isset($_POST[$passwordPostName]);
+if ($passwordPosted){
+	$conn = MySQLConnection::makeWithPassword($_POST[$passwordPostName]);
+	$_SESSION["password"] = $_POST[$passwordPostName];
+}else{//password already exists
 	echo "got Here";
 	$conn = MySQLConnection::makeFromSession();	
 }
