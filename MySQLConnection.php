@@ -1,12 +1,39 @@
 <?php
 
+if(!isset($_SESSION)){
+	session_start();
+}
+
 class MySQLConnection{
 
     private $connection;
-    private $currentTable;
+    
+    function __construct(){
+    	$this->loadSession();
+    }
 
-    function __construct($password){
-        $servername = 'z3r0.info';
+
+    private static function loadSession(){
+        if(!isset($_SESSION)){
+           session_start();
+        }
+    }
+
+    public static function makeWithPassword($password){
+    	$mySQLConnection = new MySQLConnection();
+    	$mySQLConnection->connectToMyDatabase($password);
+        return $mySQLConnection;
+    }
+    
+    public static function makeFromSession(){
+    	$mySQLConnection = new MySQLConnection();
+    	echo "Pass from session " . $_SESSION["password"];
+    	$mySQLConnection->connectToMyDatabase($_SESSION["password"]);
+    	return $mySQLConnection;
+    }
+    
+    private function connectToMyDatabase($password){
+        $servername = 'localhost';
         $username = 'app';
         $dbname = 'db_app';
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -27,11 +54,16 @@ class MySQLConnection{
                 $titles[$row["id"]] = $row["title"];
             }
         }else{
-            echo "0 results";
+        	return "error";
         }
         return $titles;
     }
-
+    
+    public function printServerInfo(){
+    	echo $this->connection->server_info;
+    }
+    
+    
 }
 
 

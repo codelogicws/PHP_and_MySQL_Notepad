@@ -1,3 +1,4 @@
+
 <html><body>
 
 <!--need to use a more secure password transfer-->
@@ -6,6 +7,5 @@
 <input type="password" name="password"><br>
 <input type="submit"><br>
 </form>
-
 
 </body></html>

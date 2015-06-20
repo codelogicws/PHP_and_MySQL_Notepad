@@ -1,12 +1,15 @@
 <?php
 include "MySQLConnection.php";
+
+if(!isset($_SESSION)){
+	session_start();
+}
 ?>
 
 <html>
 <body>
 
 <?php
-
 
 function addButton($key, $title){
     echo $title . " (" . $key . ")<br>\n";
@@ -27,7 +30,7 @@ function addAllNoteButtons($connection){
 }
 
 echo "<br>";
-$conn = new MySQLConnection($_POST["password"]);
+$conn = MySQLConnection::makeWithPassword($_POST["password"]);
 addAllNoteButtons($conn);
 
 ?>
