@@ -68,15 +68,15 @@ class MySQLConnection{
 
     public function getTitles(){
         $command = "SELECT * FROM title";
-        return $this->returnQuery($command);
+        return $this->returnQuery($command, "title");
     }
     
-    public function returnQuery($command){
+    public function returnQuery($command, $table){
         $result = $this->connection->query($command);
         if($result->num_rows > 0){
 
             while($row = $result->fetch_assoc()){
-                $titles[$row["id"]] = $row["title"];
+                $titles[$row["id"]] = $row[$table];
             }
         }else{
         	return "error";
