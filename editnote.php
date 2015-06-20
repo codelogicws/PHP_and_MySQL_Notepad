@@ -5,10 +5,8 @@ include "MySQLConnection.php";
 <html><body>
 
 <?php
-    echo $_POST["note"];
+    echo $_POST["note"] . "<br>";
     $connection = MySQLConnection::makeFromSession();
-    
-    
 
 ?>
 
