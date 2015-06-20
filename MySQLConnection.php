@@ -54,16 +54,8 @@ class MySQLConnection{
     }
     
     public function selectArgument($table, $id){
-    	$selectCommand = "SELECT * FROM $table WHERE id='$id'";
-    	$result = $this->connection->query($selectCommand);
-    	if($result->num_rows > 0){
-    		while($row = $result->fetch_assoc()){
-    			$elements[$row["id"]] = $row[$table];
-    		}
-    	}else{
-    		return "error";
-    	}
-    	return $elements;
+    	$command = "SELECT * FROM $table WHERE id='$id'";
+    	return $this->returnQuery($command, $table);
     }
 
     public function getTitles(){

@@ -34,7 +34,6 @@ if ($passwordPosted){
 	$conn = MySQLConnection::makeWithPassword($_POST[$passwordPostName]);
 	$_SESSION["password"] = $_POST[$passwordPostName];
 }else{//password already exists
-	echo "got Here";
 	$conn = MySQLConnection::makeFromSession();	
 }
 
