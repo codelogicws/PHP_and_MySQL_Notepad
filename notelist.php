@@ -11,7 +11,7 @@ $passwordPostName = "password";
 
 <?php
 
-function addButton($key, $title){
+function addEditButton($key, $title){
     echo $title . " (" . $key . ")<br>\n";
     echo '<button type="submit" name="note" class="bttn" value="' .
         $key . 
@@ -20,13 +20,21 @@ function addButton($key, $title){
         "</button><br>";
 }
 
+function addDeleteButton($id){
+	echo '<button type="submit" clsss="bttn" name="delete" value=" . $id . ">delete</button>';
+}
+
 function addAllNoteButtons($connection){
     $titles = $connection->getTitles();
-    echo '<form action="editnote.php" method="post">';
     foreach($titles as $key => $title){
-        addButton($key, $title);
+    	echo '<form action="editnote.php" method="post">';
+        addEditButton($key, $title);
+    	echo "</form>";
+    	echo '<form action="deletedNote.php" method="post">';
+    	addDeleteButton($key);
+    	echo "</form>";
+    	echo "<hr><p>";
     }
-    echo "</form>";
 }
 
 function addCreateButton(){

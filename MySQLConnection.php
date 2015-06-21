@@ -90,9 +90,6 @@ class MySQLConnection{
     	$command = 'CALL updateNote("' . $id . '", "' . $title . '", "' . $note . '");';
     	$failed = !$this->connection->query($command);
     	if($failed){
-    		echo '!!Could not edit note!!';
-    		echo "<br>";
-    		echo $this->connection->errno . $this->connection->error;
     		return "Failed to update Note";
     	}else{
     		return "Successfully updated the note!";
@@ -104,9 +101,9 @@ class MySQLConnection{
     	$command = 'CALL addNote("' . $title . '", "' . $note . '")';
     	$failed = !$this->connection->query($command);
     	if($failed){
-    		echo '!!Could not create the new note!!';
-    		echo "<br>";
-    		echo $this->connection->errno . $this->connection->error;
+    		return "Failed to create note";
+    	}else{
+    		return "Successfully created the new note!";
     	}
     }
     
@@ -116,6 +113,7 @@ class MySQLConnection{
     
     
 }
+
 
 
 ?>
