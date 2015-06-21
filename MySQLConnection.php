@@ -80,9 +80,9 @@ class MySQLConnection{
     	$command = 'CALL removeNote("' . $id . '")';
     	$failed = !$this->connection->query($command);
     	if($failed){
-    		echo '!!Could not remove the old note!!';
-    		echo "<br>";
-    		echo $this->connection->errno . $this->connection->error;
+    		return "Failed to delete note";
+    	}else{
+    		return "Successfully deleted the note!";
     	}
     }
     
@@ -90,7 +90,7 @@ class MySQLConnection{
     	$command = 'CALL updateNote("' . $id . '", "' . $title . '", "' . $note . '");';
     	$failed = !$this->connection->query($command);
     	if($failed){
-    		return "Failed to update Note";
+    		return "Failed to update note";
     	}else{
     		return "Successfully updated the note!";
     	}

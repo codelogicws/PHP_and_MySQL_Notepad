@@ -21,7 +21,9 @@ function addEditButton($key, $title){
 }
 
 function addDeleteButton($id){
-	echo '<button type="submit" clsss="bttn" name="delete" value=" . $id . ">delete</button>';
+	echo '<button type="submit" clsss="bttn" name="delete" value="' . 
+	    $id . 
+	    '">delete</button>';
 }
 
 function addAllNoteButtons($connection){
