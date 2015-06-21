@@ -75,11 +75,32 @@ class MySQLConnection{
         }
         return $titles;
     }
-
-    public function addNote($title, $note){
-    	$failed = !$this->connection->query('CALL addNote("' . $title . '", "' . $note . '")');
+    
+    public function removeNote($id){
+    	$command = 'CALL removeNote("' . $id . '")';
+    	$failed = !$this->connection->query($command);
     	if($failed){
-    		echo 'Could not create note';
+    		echo '!!Could not remove the old note!!';
+    		echo "<br>";
+    		echo $this->connection->errno . $this->connection->error;
+    	}
+    }
+    
+    public function updateNote($id, $title, $note){
+    	$command = 'CALL updateNote("' . $id . '", "' . $title . '", "' . $note . '");';
+    	$failed = !$this->connection->query($command);
+    	if($failed){
+    		echo '!!Could not edit note!!';
+    		echo "<br>";
+    		echo $this->connection->errno . $this->connection->error;
+    	}
+    }
+    
+    public function addNote($title, $note){
+    	$command = 'CALL addNote("' . $title . '", "' . $note . '")';
+    	$failed = !$this->connection->query($command);
+    	if($failed){
+    		echo '!!Could not create the new note!!';
     		echo "<br>";
     		echo $this->connection->errno . $this->connection->error;
     	}
