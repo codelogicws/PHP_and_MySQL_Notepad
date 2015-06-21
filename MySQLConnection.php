@@ -93,7 +93,11 @@ class MySQLConnection{
     		echo '!!Could not edit note!!';
     		echo "<br>";
     		echo $this->connection->errno . $this->connection->error;
+    		return "Failed to update Note";
+    	}else{
+    		return "Successfully updated the note!";
     	}
+    
     }
     
     public function addNote($title, $note){

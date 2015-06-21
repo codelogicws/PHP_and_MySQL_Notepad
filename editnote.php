@@ -12,10 +12,12 @@ include "MySQLConnection.php";
 
 ?>
 
-<form>
-	<input type="text" value=<?php echo '"' . $title . '"'?>>
+<form action="editedNote.php" method="post">
+	<input type="hidden" name="id" value="<?php echo $id ?>">
+	<input type="text" name="title" value=<?php echo '"' . $title . '"'?>>
 	<br>
-	<textarea rows="10" cols="50"><?php echo $note?></textarea>
+	<textarea name="note" rows="10" cols="50"><?php echo $note?></textarea>
+	<input type="submit">
 </form>
 <a href="notelist.php">Back</a>
 
