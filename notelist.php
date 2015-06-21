@@ -29,6 +29,12 @@ function addAllNoteButtons($connection){
     echo "</form>";
 }
 
+function addCreateButton(){
+	echo '<form action="createNote.php" method="post">';
+	echo '<input type="submit" class="bttn" name="Create New Note" value="Create New Note">';
+	echo '</form>';
+}
+
 $passwordPosted = isset($_POST[$passwordPostName]);
 if ($passwordPosted){
 	$conn = MySQLConnection::makeWithPassword($_POST[$passwordPostName]);
@@ -38,6 +44,8 @@ if ($passwordPosted){
 }
 
 addAllNoteButtons($conn);
+addCreateButton();
+
 
 ?>
 

@@ -11,3 +11,5 @@ $id = $_POST['id'];
 $title = $_POST['title'];
 $note = $_POST['note'];
 echo $connection->updateNote($id, $title, $note);
+?>
+<a href="notelist.php">back</a>

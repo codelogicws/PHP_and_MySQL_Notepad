@@ -17,6 +17,7 @@ include "MySQLConnection.php";
 	<input type="text" name="title" value=<?php echo '"' . $title . '"'?>>
 	<br>
 	<textarea name="note" rows="10" cols="50"><?php echo $note?></textarea>
+	<br>
 	<input type="submit">
 </form>
 <a href="notelist.php">Back</a>
