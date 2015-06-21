@@ -75,6 +75,15 @@ class MySQLConnection{
         }
         return $titles;
     }
+
+    public function addNote($title, $note){
+    	$failed = !$this->connection->query('CALL addNote("' . $title . '", "' . $note . '")');
+    	if($failed){
+    		echo 'Could not create note';
+    		echo "<br>";
+    		echo $this->connection->errno . $this->connection->error;
+    	}
+    }
     
     public function printServerInfo(){
     	echo $this->connection->server_info;
