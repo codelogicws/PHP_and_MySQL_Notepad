@@ -29,14 +29,22 @@ function addDeleteButton($id){
 function addAllNoteButtons($connection){
     $titles = $connection->getTitles();
     foreach($titles as $key => $title){
-    	echo '<form action="editnote.php" method="post">';
-        addEditButton($key, $title);
-    	echo "</form>";
-    	echo '<form action="deletedNote.php" method="post">';
-    	addDeleteButton($key);
-    	echo "</form>";
+    	addMiniEditForm ($key, $title);
+    	addMiniDeleteForm ($key);
     	echo "<hr><p>";
     }
+}
+
+function addMiniDeleteForm($key) {
+    echo '<form action="deletedNote.php" method="post">';
+    addDeleteButton($key);
+    echo "</form>";
+}
+
+function addMiniEditForm($key, $title) {
+    echo '<form action="editnote.php" method="post">';
+    addEditButton($key, $title);
+    echo "</form>";
 }
 
 function addCreateButton(){
